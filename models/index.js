@@ -1,4 +1,6 @@
 const Sequelize = require('sequelize'); // Sequelize 모듈 불러오기
+const path = require('path'); // path 모듈 가져오기
+const fs = require('fs'); // 파일 시스템 모듈 가져오기
 const User = require('./user'); // User 모델 불러오기
 const Post = require('./post'); // Post 모델 불러오기
 const Hashtag = require('./hashtag'); // Hashtag 모델 불러오기
