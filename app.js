@@ -9,7 +9,8 @@ const passport = require('passport'); // 인증을 위한 미들웨어
 
 // .env 파일에 정의된 환경 변수를 로드
 dotenv.config();
-const pageRouter = require('./routes/page'); // 페이지 라우터를 불러오기
+const pageRouter = require('./routes/page'); // 페이지 라우터 불러오기
+const authRouter = require('./routes/auth'); // 인증 관련 라우터 불러오기
 const { sequelize } = require('./models'); // './models'에서 sequelize 객체 호출
 const passportConfig = require('./passport'); // Passport 설정을 가져오기
 
@@ -51,6 +52,7 @@ app.use(passport.initialize()); // Passport 초기화 미들웨어 추가
 app.use(passport.session()); // Passport 세션 관리 미들웨어 추가
 
 app.use('/', pageRouter); // '/' 경로로 들어오는 요청을 pageRouter로 처리하도록 설정
+app.use('/auth', authRouter); // '/auth' 경로로 들어오는 요청을 authRouter로 처리하도록 설정
 
 // 요청한 라우터가 없을 경우 404 에러를 처리하는 미들웨어 추가
 app.use((req, res, next) => {

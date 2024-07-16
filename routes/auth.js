@@ -23,4 +23,16 @@ router.post('/login', isNotLoggedIn, login);
 // 사용자가 로그인한 상태 -> 로그아웃 가능
 router.get('/logout', isLoggedIn, logout);
 
+// 카카오 로그인 요청을 처리하는 라우터
+// GET /auth/kakao 경로로 들어오는 요청 처리
+router.get('/kakao', passport.authenticate('kakao'));
+
+// 카카오 로그인 콜백 요청을 처리하는 라우터
+// GET /auth/kakao/callback 경로로 들어오는 요청 처리
+router.get('/kakao/callback', passport.authenticate('kakao', {
+    failureRedirect: '/?error=카카오로그인 실패', // 로그인 실패 시 리다이렉트 경로 설정
+    }), (req, res) => {
+        res.redirect('/'); // 성공 시에는 메인 페이지(/)로 이동
+    });
+
 module.exports = router; // 라우터 객체를 모듈로 내보내기
