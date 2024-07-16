@@ -13,7 +13,7 @@ module.exports = () => { // 모듈을 내보내는 함수
         console.log('kakao profile', profile); // Kakao 프로필 정보를 콘솔에 출력
         try {
             const exUser = await User.findOne({ // 기존 사용자 찾기
-                where: { snsId: profile.id, provider: 'kakao'}, // snsId와 provider가 일치하는 사용자 찾기
+                where: { snsId: profile.id.toString(), provider: 'kakao'}, // snsId와 provider가 일치하는 사용자 찾기
             });
             if (exUser) { // 사용자가 이미 존재하면
                 done(null, exUser); // 해당 사용자 정보를 반환
