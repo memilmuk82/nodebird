@@ -1,3 +1,5 @@
+const { User, Post } = require('../models');
+
 // 프로필 페이지를 렌더링하는 함수 정의
 exports.renderProfile = (req, res) => {
     // 'profile' 템플릿 렌더링, 'title' 변수 설정
@@ -12,8 +14,12 @@ exports.renderJoin = (req, res) => {
 
 // 메인 페이지를 렌더링하는 함수 정의
 exports.renderMain = (req, res, next) => {
-    // 화면에 표시할 트윗 목록 초기화
-    const twits = [];
+    try {
+        const posts = await Post.findAll({
+
+        })
+    }
+
     // 'main' 템플릿 렌더링, 'title' 및 'twits' 변수 설정
     res.render('main', {
         title: 'NodeBird', // 페이지 타이틀을 설정합니다.
